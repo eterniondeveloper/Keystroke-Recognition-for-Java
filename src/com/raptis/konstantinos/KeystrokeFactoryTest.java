@@ -55,7 +55,6 @@ public class KeystrokeFactoryTest {
                     previousTimePressed = System.nanoTime();
                 } else {
                     currentTimePressed = System.nanoTime();
-                    previousTimePressed = currentTimePressed;
                 }
             }
 
@@ -70,6 +69,7 @@ public class KeystrokeFactoryTest {
                 } else {
                     currentTimeReleased = System.nanoTime();
                     double timePassed = (double) ((currentTimeReleased - previousTimePressed) / 1000000);  // milliseconds
+                    previousTimePressed = currentTimePressed;
                     currentKey = new Key(String.format("%c", e.getKeyChar()), previousKey, timePassed, currentTimePressed, currentTimeReleased);
                     logArea.append("Time passed : " + timePassed + " ms" + "\n");
                     previousTimeReleased = currentTimeReleased;
